@@ -103,7 +103,7 @@
 			</ul>
 
 			<ul id="messages">
-				<li>Messages</li>
+				
 			</ul>
 
 			<div id="form">
@@ -122,13 +122,15 @@
 		$(document).ready(function() {
 			$('#send').on('click', function(){
 				let message = $('#message').val();
+				let dados = {
+					message: message,
+					user: '{{ Auth::user()->id }}'
+				}
 
 				$.ajax({
 					method: 'post',
 					url: '{{ url('/send_message') }}',
-					data: {
-						message: message,
-					},
+					data: dados,
 					success: function(data){
 						console.log('a data da msg enviada', data)
 					}, 

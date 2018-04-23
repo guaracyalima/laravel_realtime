@@ -54,4 +54,7 @@ window.Echo = new Echo({
     host: 'http://localhost:6001',
 });
 
-window.Echo.channel('chat').listen('MessageEvent', e => console.log('evento is', e))
+window.Echo.channel('chat').listen('MessageEvent', e => {
+	let message = `<li>${e.user.name}: ${e.message.message}</li>`;
+	$('#messages').append(message);
+})
